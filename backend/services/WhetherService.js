@@ -2,6 +2,7 @@ const axios = require('axios');
 const NodeCache = require('node-cache');
 const cache = new NodeCache({ stdTTL: 300 }); // 5 minutes
 const cities = require('../cities.json');
+const { computeComfortIndex } = require('../utils/comfortIndex');
 
 
 async function fetchWeatherData(cityCode) {
@@ -17,8 +18,72 @@ async function fetchWeatherData(cityCode) {
   return data;
 }
 
+async function getAllCitiesWeather() {
+  let results = [];
+  for (const city of cities) {
+    try {
+      const data = await fetchWeatherData(city.CityCode);
+      const { temp, humidity } = data.main;
+      const windSpeed = data.wind.speed;
+      const comfortIndex = computeComfortIndex(temp, humidity, windSpeed);
+      results.push({
+        name: city.name,
+        cityCode: city.CityCode,
+        weather: {
+          temp,
+          humidity,
+          windSpeed,
+          description: data.weather[0].description,
+          icon: data.weather[0].icon
+        },
+        comfortIndex
+      });
+    } catch (err) {
+      results.push({ name: city.name, error: 'Failed to fetch' });
+    }
+  }
+  // Sort by comfortIndex descending
+  results.sort((a, b) => b.comfortIndex - a.comfortIndex);
+  // Add ranking
+  results = results.map((item, idx) => ({ ...item, rank: idx + 1 }));
+  return results;
+}
+
 // Debug endpoint to check cache status
 function getCacheStatus(cityCode) {
   const cacheKey = `weather_${cityCode}`;
   return cache.has(cacheKey) ? 'From Cache' : 'Not Cached';
 }
+
+async function getAllCitiesWeatherWithCacheStatus() {
+  let results = [];
+  for (const city of cities) {
+    try {
+      const status = getCacheStatus(city.CityCode);
+      const data = await fetchWeatherData(city.CityCode);
+      const { temp, humidity } = data.main;
+      const windSpeed = data.wind.speed;
+      const comfortIndex = computeComfortIndex(temp, humidity, windSpeed);
+      results.push({
+        name: city.name,
+        cityCode: city.CityCode,
+        weather: {
+          temp,
+          humidity,
+          windSpeed,
+          description: data.weather[0].description,
+          icon: data.weather[0].icon
+        },
+        comfortIndex,
+        cacheStatus: status
+      });
+    } catch (err) {
+      results.push({ name: city.name, error: 'Failed to fetch' });
+    }
+  }
+  results.sort((a, b) => b.comfortIndex - a.comfortIndex);
+  results = results.map((item, idx) => ({ ...item, rank: idx + 1 }));
+  return results;
+}
+
+module.exports = { getAllCitiesWeather, getAllCitiesWeatherWithCacheStatus, getCacheStatus };
