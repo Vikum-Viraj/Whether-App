@@ -16,3 +16,9 @@ async function fetchWeatherData(cityCode) {
   }
   return data;
 }
+
+// Debug endpoint to check cache status
+function getCacheStatus(cityCode) {
+  const cacheKey = `weather_${cityCode}`;
+  return cache.has(cacheKey) ? 'From Cache' : 'Not Cached';
+}
