@@ -52,7 +52,7 @@ async function getAllCitiesWeather() {
 // Debug endpoint to check cache status
 function getCacheStatus(cityCode) {
   const cacheKey = `weather_${cityCode}`;
-  return cache.has(cacheKey) ? 'From Cache' : 'Not Cached';
+  return cache.has(cacheKey) ? 'Hit' : 'Miss';
 }
 
 async function getAllCitiesWeatherWithCacheStatus() {
@@ -78,7 +78,7 @@ async function getAllCitiesWeatherWithCacheStatus() {
         cacheStatus: status
       });
     } catch (err) {
-      results.push({ name: city.name, error: 'Failed to fetch' });
+      results.push({ name: city.name, error: 'Failed to fetch', cacheStatus: 'Miss' });
     }
   }
   results.sort((a, b) => b.comfortIndex - a.comfortIndex);
