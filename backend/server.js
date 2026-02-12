@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const { getAllCitiesWeather } = require('./services/WhetherService');
+const { getAllCitiesWeather, getAllCitiesWeatherWithCacheStatus } = require('./services/WhetherService');
 
 const app = express();
 app.use(cors());
@@ -17,5 +17,15 @@ app.get('/api/weather', async (req, res) => {
     res.json(results);
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch weather data' });
+  }
+});
+
+// Debug endpoint to show cache status for all cities
+app.get('/api/weather/debug/cache', async (req, res) => {
+  try {
+    const results = await getAllCitiesWeatherWithCacheStatus();
+    res.json(results.map(({ name, cityCode, cacheStatus }) => ({ name, cityCode, cacheStatus })));
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch cache status' });
   }
 });
