@@ -1,0 +1,13 @@
+
+[
+  { "name": "London", "CityCode": 2643743 },
+  { "name": "New York", "CityCode": 5128581 },
+  { "name": "Tokyo", "CityCode": 1850147 },
+  { "name": "Paris", "CityCode": 2988507 },
+  { "name": "Sydney", "CityCode": 2147714 },
+  { "name": "Moscow", "CityCode": 524901 },
+  { "name": "Rio de Janeiro", "CityCode": 3451190 },
+  { "name": "Cairo", "CityCode": 360630 },
+  { "name": "Toronto", "CityCode": 6167865 },
+  { "name": "Mumbai", "CityCode": 1275339 }
+]
