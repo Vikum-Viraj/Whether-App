@@ -3,6 +3,9 @@ import { getComfortColor, getRankBadgeColor } from '../utils/weatherUtils';
 
 function WeatherCards({ weatherData }) {
 
+      const kelvinToCelsius = (tempK) => {
+    return (tempK - 273.15).toFixed(1);
+  }
     return (
         <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {weatherData.map((city, idx) => (
@@ -40,7 +43,7 @@ function WeatherCards({ weatherData }) {
                         </div>
                         <div className="text-right">
                             <div className="text-2xl font-extrabold bg-gradient-to-br from-blue-700 to-indigo-700 bg-clip-text text-transparent leading-none">
-                                {city.error ? '--' : city.weather ? (city.weather.temp - 273.15).toFixed(1) : '--'}°
+                                {city.error ? '--' : city.weather ? kelvinToCelsius(city.weather.temp) : '--'}°
                             </div>
                             <div className="text-xs text-gray-400 font-medium">Celsius</div>
                         </div>

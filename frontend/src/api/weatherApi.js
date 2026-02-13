@@ -1,14 +1,15 @@
-import axios from 'axios';
+import api from './client';
 
-const api = axios.create({
-  baseURL: 'http://localhost:3000/api',
-  timeout: 5000,
-});
-
+/**
+ * Fetch weather data for all cities
+ */
 export function fetchWeather() {
   return api.get('/weather');
 }
 
+/**
+ * Fetch weather cache status for debugging
+ */
 export function fetchWeatherCacheStatus() {
   return api.get('/weather/debug/cache');
 }

@@ -3,6 +3,10 @@ import { getComfortColor, getRankBadgeColor } from '../utils/weatherUtils';
 
 function WeatherTable({ weatherData }) {
 
+  const kelvinToCelsius = (tempK) => {
+    return (tempK - 273.15).toFixed(1);
+  }
+  
   return (
     <div className="overflow-hidden rounded-2xl shadow-2xl border border-blue-100">
       <div className="overflow-x-auto">
@@ -70,7 +74,7 @@ function WeatherTable({ weatherData }) {
                 <td className="py-4 px-6 text-center">
                   <div className="inline-flex flex-col items-center">
                     <span className="text-2xl font-extrabold bg-gradient-to-br from-blue-700 to-indigo-700 bg-clip-text text-transparent">
-                      {city.error ? '--' : city.weather ? (city.weather.temp - 273.15).toFixed(1) : '--'}°
+                      {city.error ? '--' : city.weather ? kelvinToCelsius(city.weather.temp) : '--'}°
                     </span>
                     <span className="text-xs text-gray-400 font-medium">Celsius</span>
                   </div>
@@ -89,7 +93,7 @@ function WeatherTable({ weatherData }) {
                 {/* Comfort Index */}
                 <td className="py-4 px-6 text-center">
                   <span className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-bold border shadow-sm ${getComfortColor(city.comfortIndex)}`}>
-                    {city.comfortIndex}/100
+                    {city.comfortIndex}%
                   </span>
                 </td>
               </tr>
