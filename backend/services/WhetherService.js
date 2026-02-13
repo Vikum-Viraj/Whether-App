@@ -42,9 +42,9 @@ async function getAllCitiesWeather() {
       results.push({ name: city.name, error: 'Failed to fetch' });
     }
   }
-  // Sort by comfortIndex descending
+  // sort by comfortIndex descending
   results.sort((a, b) => b.comfortIndex - a.comfortIndex);
-  // Add ranking
+  // iterate and add rank high to low
   results = results.map((item, idx) => ({ ...item, rank: idx + 1 }));
   return results;
 }
