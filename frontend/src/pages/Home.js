@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaArrowRight } from "react-icons/fa";
 
 function Home() {
   return (
@@ -19,24 +20,17 @@ function Home() {
             </span>
           </h1>
 
-          {/* Subheading */}
           <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-2xl mx-auto">
             Discover the most comfortable cities to visit based on real-time weather data and our unique comfort index
           </p>
 
-          {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link
               to="/dashboard"
-              className="px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-lg font-semibold rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-200"
+              className="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-lg font-semibold rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-200"
             >
               View Weather Rankings
-            </Link>
-            <Link
-              to="/auth?mode=signup"
-              className="px-8 py-4 bg-white text-blue-700 text-lg font-semibold rounded-xl shadow-lg border-2 border-blue-200 hover:border-blue-400 hover:shadow-xl hover:scale-105 transition-all duration-200"
-            >
-              Get Started
+              <FaArrowRight className="text-white" />
             </Link>
           </div>
         </div>
@@ -76,8 +70,7 @@ function Home() {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 mt-20">
+      <footer className="bg-white border-t border-gray-300 mt-20">
         <div className="max-w-8xl mx-auto px-4 py-8 text-center text-gray-600">
           <p className="text-sm">
             © 2025 WhetherApp. All rights reserved.

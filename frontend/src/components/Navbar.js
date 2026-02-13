@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
+  
+  const handleLogin = () => {
+    loginWithRedirect();
+  };
+
+  const handleLogout = () => {
+    logout({ logoutParams: { returnTo: window.location.origin } });
+  };
 
   return (
     <nav className="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 text-white px-4 py-2 shadow-lg">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        {/* Logo Section */}
         <Link to="/" className="flex items-center space-x-3 group">
           <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white/10 backdrop-blur-sm flex items-center justify-center text-xl sm:text-2xl shadow-md group-hover:scale-105 transition-transform duration-200 border border-white/20">
             ☁️
@@ -16,34 +25,38 @@ function Navbar() {
             <span className="font-bold text-xl sm:text-2xl tracking-tight leading-none bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
               WhetherApp
             </span>
-            <span className="text-xs text-blue-100/80 font-medium tracking-wide mt-0.5 hidden sm:block">
-              Your Comfort Index
-            </span>
           </div>
         </Link>
 
         {/* Desktop Navigation Links */}
         <div className="hidden md:flex items-center space-x-2">
-          <Link
-            to="/dashboard"
-            className="px-4 py-2 rounded-lg text-white/90 font-medium hover:bg-white/10 hover:text-white transition-all duration-200"
-          >
-            Dashboard
-          </Link>
+          {isAuthenticated && (
+            <Link
+              to="/dashboard"
+              className="px-4 py-2 rounded-lg text-white/90 font-medium hover:bg-white/10 hover:text-white transition-all duration-200"
+            >
+              Dashboard
+            </Link>
+          )}
           
-          <Link
-            to="/auth"
-            className="px-5 py-2 rounded-lg bg-white text-blue-700 font-semibold hover:bg-blue-50 transition-all duration-200 shadow-md hover:shadow-lg hover:scale-105 transform"
-          >
-            Sign In
-          </Link>
-          
-          <Link
-            to="/auth?mode=signup"
-            className="px-5 py-2 rounded-lg bg-transparent text-white font-semibold hover:bg-white/15 transition-all duration-200 border-2 border-white/30 hover:border-white/50 backdrop-blur-sm"
-          >
-            Sign Up
-          </Link>
+          {isAuthenticated ? (
+            <div className="flex items-center space-x-2">
+              <span className="text-white/90">Hello, {user?.name}</span>
+              <button
+                onClick={handleLogout}
+                className="px-5 py-2 rounded-lg bg-white text-blue-700 font-semibold hover:bg-blue-50 transition-all duration-200 shadow-md hover:shadow-lg hover:scale-105 transform"
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={handleLogin}
+              className="px-5 py-2 rounded-lg bg-white text-blue-700 font-semibold hover:bg-blue-50 transition-all duration-200 shadow-md hover:shadow-lg hover:scale-105 transform"
+            >
+              Sign In
+            </button>
+          )}
         </div>
 
         {/* Mobile menu button */}
@@ -83,29 +96,40 @@ function Navbar() {
       {/* Mobile Navigation Menu */}
       <div className={`${isOpen ? 'block' : 'hidden'} md:hidden`}>
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-white/10 mt-2">
-          <Link
-            to="/dashboard"
-            className="block px-3 py-2 rounded-md text-base font-medium text-white/90 hover:bg-white/10 hover:text-white transition-all duration-200"
-            onClick={() => setIsOpen(false)}
-          >
-            Dashboard
-          </Link>
+          {isAuthenticated && (
+            <Link
+              to="/dashboard"
+              className="block px-3 py-2 rounded-md text-base font-medium text-white/90 hover:bg-white/10 hover:text-white transition-all duration-200"
+              onClick={() => setIsOpen(false)}
+            >
+              Dashboard
+            </Link>
+          )}
           
-          <Link
-            to="/auth"
-            className="block px-3 py-2 rounded-md text-base font-medium bg-white text-blue-700 hover:bg-blue-50 transition-all duration-200 shadow-md"
-            onClick={() => setIsOpen(false)}
-          >
-            Sign In
-          </Link>
-          
-          <Link
-            to="/auth?mode=signup"
-            className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-white/15 transition-all duration-200 border-2 border-white/30 hover:border-white/50 backdrop-blur-sm"
-            onClick={() => setIsOpen(false)}
-          >
-            Sign Up
-          </Link>
+          {isAuthenticated ? (
+            <div className="flex flex-col space-y-1">
+              <span className="px-3 py-2 text-white/90">Hello, {user?.name}</span>
+              <button
+                onClick={() => {
+                  handleLogout();
+                  setIsOpen(false);
+                }}
+                className="block px-3 py-2 rounded-md text-base font-medium bg-white text-blue-700 hover:bg-blue-50 transition-all duration-200 shadow-md"
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={() => {
+                handleLogin();
+                setIsOpen(false);
+              }}
+              className="block px-3 py-2 rounded-md text-base font-medium bg-white text-blue-700 hover:bg-blue-50 transition-all duration-200 shadow-md"
+            >
+              Sign In
+            </button>
+          )}
         </div>
       </div>
     </nav>
