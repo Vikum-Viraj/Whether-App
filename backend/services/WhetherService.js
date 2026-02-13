@@ -10,7 +10,7 @@ async function fetchWeatherData(cityCode) {
   let data = cache.get(cacheKey);
   if (!data) {
     const response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?id=${cityCode}&appid=${API_KEY}`
+      `https://api.openweathermap.org/data/2.5/weather?id=${cityCode}&appid=${process.env.OPENWEATHER_API_KEY}`
     );
     data = response.data;
     cache.set(cacheKey, data);
