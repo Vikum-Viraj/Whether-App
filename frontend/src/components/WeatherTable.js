@@ -22,19 +22,18 @@ function WeatherTable({ weatherData }) {
             </tr>
           </thead>
           <tbody className="divide-y divide-blue-100">
-            {weatherData.map((city, idx) => (
+            {weatherData.map((city) => (
               <tr
-                key={city.cityCode || idx}
+                key={city.cityCode}
                 className="hover:bg-blue-50/50 transition-colors duration-150 group"
               >
-                {/* Rank */}
                 <td className="py-4 px-6">
-                  <div className={`inline-flex items-center justify-center w-10 h-10 rounded-full font-bold text-sm ${getRankBadgeColor(city.rank)}`}>
+                  <div className={`inline-flex items-center justify-center w-10 h-10 rounded-full 
+                    font-bold text-sm ${getRankBadgeColor(city.rank)}`}>
                     #{city.rank}
                   </div>
                 </td>
 
-                {/* City with Icon */}
                 <td className="py-4 px-6">
                   <div className="flex items-center space-x-3">
                     <div className="w-12 h-12 flex-shrink-0 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-xl flex items-center justify-center shadow-sm">
@@ -53,13 +52,12 @@ function WeatherTable({ weatherData }) {
                         {city.name}
                       </div>
                       <div className="text-xs text-gray-500">
-                        {city.weather?.country || 'Unknown'}
+                        {city.weather?.country || 'N/A'}
                       </div>
                     </div>
                   </div>
                 </td>
 
-                {/* Weather Condition */}
                 <td className="py-4 px-6">
                   <div className="text-sm text-gray-700 capitalize font-medium">
                     {city.error ? (
@@ -70,7 +68,6 @@ function WeatherTable({ weatherData }) {
                   </div>
                 </td>
 
-                {/* Temperature */}
                 <td className="py-4 px-6 text-center">
                   <div className="inline-flex flex-col items-center">
                     <span className="text-2xl font-extrabold bg-gradient-to-br from-blue-700 to-indigo-700 bg-clip-text text-transparent">
@@ -80,7 +77,6 @@ function WeatherTable({ weatherData }) {
                   </div>
                 </td>
 
-                {/* Humidity */}
                 <td className="py-4 px-6 text-center">
                   <div className="inline-flex items-center space-x-1 px-3 py-1.5 bg-blue-50 rounded-lg border border-blue-200">
                     <span className="text-sm font-bold text-blue-900">
@@ -90,7 +86,6 @@ function WeatherTable({ weatherData }) {
                   </div>
                 </td>
 
-                {/* Comfort Index */}
                 <td className="py-4 px-6 text-center">
                   <span className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-bold border shadow-sm ${getComfortColor(city.comfortIndex)}`}>
                     {city.comfortIndex}%

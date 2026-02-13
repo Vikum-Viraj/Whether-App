@@ -37,7 +37,7 @@ const Dashboard = () => {
                 <header className="mb-6">
                     <h1 className="text-3xl md:text-4xl font-extrabold text-blue-900 text-center">City Comfort Rankings</h1>
                     <p className="mt-2 text-center text-sm text-gray-600">
-                        Ranked by custom Comfort Index (0–100) • Page {currentPage} of {paginationData.totalPages}
+                        Ranked by custom Comfort Index | Page {currentPage} of {paginationData.totalPages}
                     </p>
                 </header>
 

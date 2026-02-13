@@ -1,14 +1,24 @@
 import React from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Home from '../pages/Home'
 import Dashboard from '../pages/Dashboard'
-import AuthPage from '../pages/AuthPage'
-import { withAuthenticationRequired } from '@auth0/auth0-react'
+import { useAuth0 } from '@auth0/auth0-react'
 
-const ProtectedDashboard = withAuthenticationRequired(Dashboard, {
-  onRedirecting: () => <div>Loading...</div>,
-});
+function ProtectedRoute({ children }) {
+  const { isAuthenticated, isLoading } = useAuth0();
+
+  if (isLoading) return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-blue-300 flex items-center justify-center">
+      <div className="text-center">
+        <div className="w-12 h-12 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mx-auto mb-4"></div>
+        <p className="text-gray-600 font-medium">Loading...</p>
+      </div>
+    </div>
+  );
+
+  return isAuthenticated ? children : <Navigate to="/" />;
+}
 
 const MainLayout = () => {
   return (
@@ -16,8 +26,14 @@ const MainLayout = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<ProtectedDashboard />} />
-        <Route path="/auth" element={<AuthPage />} />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </div>
   )
