@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function Navbar() {
   return (
-    <nav className="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 text-white px-6 py-4 shadow-lg">
+    <nav className="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 text-white px-4 py-2 shadow-lg">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo Section */}
         <Link to="/" className="flex items-center space-x-3 group">
@@ -26,7 +26,7 @@ function Navbar() {
             to="/"
             className="px-4 py-2 rounded-lg text-white/90 font-medium hover:bg-white/10 hover:text-white transition-all duration-200"
           >
-            Home
+            Dashboard
           </Link>
           
           <Link
