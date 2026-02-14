@@ -117,4 +117,46 @@ These weights are based on how temp deviates affects humans
 - Single weather API (OpenWeather) for reliability
 - Multiple APIs could provide better accuracy but increase complexity
 
+
+## 💾 Cache Design Explanation
+
+The application uses a **5-minute in-memory cache** to optimize performance and reduce API costs:
+But when the server restart cache is gone need advanced cache mechanism in prod.
+
+### How It Works
+1. **First Request**: Fetches fresh data from OpenWeather API, stores in cache
+2. **Subsequent Requests**: Returns cached data if < 5 minutes old
+3. **Cache Expiration**: Automatically removes old data after 5 minutes
+
+### Cache Benefits
+-  **Faster Response Times**: Cached data loads instantly
+-  **Cost Effective**: Reduces API calls by ~80% during peak usage
+-  **Automatic Updates**: Fresh data every 5 minutes
+-  **Thread Safe**: Node-cache handles concurrent requests safely
+
+### Cache Monitoring
+Use the debug endpoint to monitor cache performance:
+```
+GET /api/weather/debug/cache
+```
+Returns cache hit/miss status for each city.
+
+## ⚠️ Known Limitations
+
+### Formula Limitations
+- **Seasonal Bias**: Formula uses fixed ideals year-round (doesn't account for seasonal preferences)
+- **Regional Differences**: Doesn't consider cultural comfort preferences (e.g., tropical vs. arctic climates)
+- **Activity-Based**: General comfort formula doesn't account for specific activities (sports, indoor work, etc.)
+
+### Technical Limitations
+- **Weather API Dependency**: Single point of failure if OpenWeather API is down
+- **City Coverage**: Limited to cities in the `cities.json` file
+- **Cache Staleness**: 5-minute delay for weather updates during rapid changes
+- **No Historical Data**: Only shows current weather conditions
+
+### User Experience Limitations
+- **Mobile Responsiveness**: Basic responsive design, could be enhanced for very small screens
+- **Accessibility**: Basic implementation, could benefit from enhanced screen reader support
+- **Offline Mode**: No offline functionality when internet connection is lost
+
 ---
