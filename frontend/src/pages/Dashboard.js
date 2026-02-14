@@ -5,6 +5,7 @@ import WeatherCards from '../components/WeatherCards';
 import Pagination from '../components/Pagination';
 
 const Dashboard = () => {
+    
     const { weatherData, loading, error } = useWeatherData();
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(5);

@@ -9,7 +9,7 @@ function WeatherTable({ weatherData }) {
 
   return (
     <div className="space-y-3">
-      {/* Table Header */}
+
       <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 text-white rounded-xl shadow-lg px-6 py-3">
         <div className="grid grid-cols-6 gap-4">
           <div className="text-left text-sm font-semibold tracking-wide">Rank</div>
