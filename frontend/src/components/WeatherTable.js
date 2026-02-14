@@ -59,9 +59,6 @@ function WeatherTable({ weatherData }) {
                     <div className="font-bold text-blue-900 text-base">
                       {city.name}
                     </div>
-                    <div className="text-xs text-gray-500">
-                      {city.weather?.country || 'N/A'}
-                    </div>
                   </div>
                 </div>
               </div>

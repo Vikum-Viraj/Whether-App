@@ -16,7 +16,8 @@ function App() {
     <Auth0Provider
       domain={domain}
       clientId={clientId}
-      authorizationParams={{ redirect_uri: redirectUri }}
+      authorizationParams={{ redirect_uri: redirectUri, audience: audience }}
+      cacheLocation="localstorage"
     >
       <BrowserRouter>
         <MainLayout />
