@@ -33,7 +33,7 @@ const Pagination = ({
     };
 
     return (
-        <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-white to-blue-50/30 rounded-xl border border-blue-100 shadow-lg backdrop-blur-sm">
+        <div className="flex items-center justify-between px-4 py-2 bg-gradient-to-r from-white to-blue-50/30 rounded-xl border border-blue-100 shadow-lg backdrop-blur-sm">
             {/* Mobile View */}
             <div className="flex justify-between items-center flex-1 sm:hidden">
                 <button
