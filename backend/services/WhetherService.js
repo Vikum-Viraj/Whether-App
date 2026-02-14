@@ -4,13 +4,15 @@ const cache = new NodeCache({ stdTTL: 300 }); // 5 minutes
 const cities = require('../cities.json');
 const { computeComfortIndex } = require('../utils/comfortIndex');
 
+const OPENWEATHER_API_KEY = process.env.OPENWEATHER_API_KEY;
+const OPENWEATHER_BASE_URL = process.env.OPENWEATHER_BASE_URL
 
 async function fetchWeatherData(cityCode) {
   const cacheKey = `weather_${cityCode}`;
   let data = cache.get(cacheKey);
   if (!data) {
     const response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?id=${cityCode}&appid=${process.env.OPENWEATHER_API_KEY}`
+      `${OPENWEATHER_BASE_URL}/weather?id=${cityCode}&appid=${OPENWEATHER_API_KEY}`
     );
     data = response.data;
     cache.set(cacheKey, data);

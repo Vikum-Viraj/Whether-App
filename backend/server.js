@@ -7,7 +7,6 @@ const cors = require('cors');
 const app = express();
 app.use(cors());
 
-
 app.use('/api', weatherRouter);
 
 //server up and running
