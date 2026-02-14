@@ -26,7 +26,7 @@ function WeatherTable({ weatherData }) {
           <div
             key={city.cityCode}
             className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 
-                       hover:scale-[1.02] hover:-translate-y-1 px-6 py-3 border border-blue-100
+                       hover:scale-[1.02] hover:-translate-y-1 px-6 py-2 border border-blue-100
                        animate-fadeIn"
             style={{
               animationDelay: `${index * 50}ms`,
