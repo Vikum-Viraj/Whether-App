@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import MainLayout from './layouts/MainLayout';
 import { BrowserRouter } from 'react-router-dom';
