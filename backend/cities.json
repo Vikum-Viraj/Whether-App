@@ -9,5 +9,10 @@
   { "name": "Rio de Janeiro", "CityCode": 3451190 },
   { "name": "Cairo", "CityCode": 360630 },
   { "name": "Toronto", "CityCode": 6167865 },
-  { "name": "Mumbai", "CityCode": 1275339 }
+  { "name": "Mumbai", "CityCode": 1275339 },
+  { "name": "Berlin", "CityCode": 2950159 },
+  { "name": "Dubai", "CityCode": 292223 },
+  { "name": "Singapore", "CityCode": 1880252 },
+  { "name": "Los Angeles", "CityCode": 5368361 },
+  { "name": "Chicago", "CityCode": 4887398 }
 ]

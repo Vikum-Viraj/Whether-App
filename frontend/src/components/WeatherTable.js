@@ -8,7 +8,7 @@ function WeatherTable({ weatherData }) {
   }
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-2">
 
       <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 text-white rounded-xl shadow-lg px-6 py-3">
         <div className="grid grid-cols-6 gap-4">
@@ -92,7 +92,8 @@ function WeatherTable({ weatherData }) {
               </div>
 
               <div className="text-center">
-                <span className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-bold border shadow-sm ${getComfortColor(city.comfortIndex)}`}>
+                <span className={`inline-flex items-center px-4 py-2 rounded-full text-sm 
+                  font-bold border shadow-sm ${getComfortColor(city.comfortIndex)}`}>
                   {city.comfortIndex}%
                 </span>
               </div>

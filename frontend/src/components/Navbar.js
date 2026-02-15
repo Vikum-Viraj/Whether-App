@@ -23,13 +23,13 @@ function Navbar() {
           </div>
           <div className="flex flex-col">
             <span className="font-bold text-xl sm:text-2xl tracking-tight leading-none bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
-              WhetherApp
+              SkyIndex
             </span>
           </div>
         </Link>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden md:flex items-center space-x-2">
+        <div className="hidden md:flex items-center space-x-3">
           {isAuthenticated && (
             <Link
               to="/dashboard"
@@ -40,7 +40,7 @@ function Navbar() {
           )}
           
           {isAuthenticated ? (
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-3">
               <span className="text-white/90">Hello, {user?.name}</span>
               <button
                 onClick={handleLogout}
@@ -113,7 +113,8 @@ function Navbar() {
                   handleLogout();
                   setIsOpen(false);
                 }}
-                className="block px-3 py-2 rounded-md text-base font-medium bg-white text-blue-700 hover:bg-blue-50 transition-all duration-200 shadow-md"
+                className="block px-3 py-2 rounded-md text-base font-medium bg-white text-blue-700
+              hover:bg-blue-50 transition-all duration-200 shadow-md"
               >
                 Logout
               </button>

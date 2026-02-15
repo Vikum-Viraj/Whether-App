@@ -61,10 +61,10 @@ const Dashboard = () => {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-100 to-blue-300">
-            <main className="max-w-5xl mx-auto p-5 mt-4">
-                <header className="mb-5">
+            <main className="max-w-5xl mx-auto p-5 mt-2">
+                <header className="mb-3">
                     <h1 className="text-3xl md:text-4xl font-extrabold text-blue-800 text-center">City Comfort Rankings</h1>
-                    <p className="mt-1 text-center text-md text-gray-600">
+                    <p className="text-center text-sm text-gray-600">
                         Ranked by custom Comfort Index
                     </p>
                 </header>
@@ -83,7 +83,7 @@ const Dashboard = () => {
                 </div>
 
                 {currentTab === 'table' && (
-                    <div className='flex flex-wrap mb-2 p-3 gap-5 mt-5 bg-white rounded-lg shadow-sm border border-blue-200'>
+                    <div className='flex flex-wrap mb-2 p-2.5 gap-5 mt-3 bg-blue-50 rounded-lg shadow-sm border border-blue-200'>
                         <div className='flex items-center gap-2'>
                             <label className='text-sm font-medium text-gray-700'>Sort By:</label>
                             <select value={sortBy}
@@ -108,7 +108,7 @@ const Dashboard = () => {
                     </div>
                 )}
                 {loading ? (
-                    <div className="text-center text-lg text-gray-600 py-12">Loading...</div>
+                    <div className="text-center text-lg text-blue-600 py-12">Loading weather data...</div>
                 ) : error ? (
                     <div className="text-center text-red-600 py-12">{error}</div>
                 ) : (
@@ -118,7 +118,7 @@ const Dashboard = () => {
                                 {/*desktop view */}
                                 <div className="hidden md:block">
                                     <WeatherTable weatherData={paginationData.currentItems} />
-                                    <div className='mt-2'>
+                                    <div className='mt-1.5'>
                                         {paginationData.totalPages > 1 && (
                                             <Pagination
                                                 currentPage={currentPage}

@@ -8,19 +8,20 @@ function Home() {
       {/* Hero Section */}
       <div className="max-w-6xl mx-auto px-4 py-20">
         <div className="text-center">
-          <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-3xl shadow-2xl mb-8 animate-bounce">
+          <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br
+           from-blue-600 to-indigo-600 rounded-3xl shadow-2xl mb-8 animate-bounce">
             <span className="text-5xl">☁️</span>
           </div>
 
           {/* Heading */}
-          <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-6">
+          <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-5">
             Welcome to{' '}
             <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-              WhetherApp
+              SkyIndex
             </span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-2xl mx-auto">
+          <p className="text-xl md:text-2xl text-gray-600 mb-10 max-w-2xl mx-auto">
             Discover the most comfortable cities to visit based on real-time weather data and our unique comfort index
           </p>
 
