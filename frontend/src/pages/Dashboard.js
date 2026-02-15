@@ -4,6 +4,7 @@ import WeatherTable from '../components/WeatherTable';
 import WeatherCards from '../components/WeatherCards';
 import Pagination from '../components/Pagination';
 import TemperatureGraph from '../components/Temperaturegraph';
+import { Loader } from 'lucide-react';
 
 const Dashboard = () => {
 
@@ -41,8 +42,6 @@ const Dashboard = () => {
             currentItems,
             totalItems,
             totalPages,
-            startIndex,
-            endIndex
         };
     }, [sortedWeatherData, currentPage, itemsPerPage]);
 
@@ -108,7 +107,10 @@ const Dashboard = () => {
                     </div>
                 )}
                 {loading ? (
-                    <div className="text-center text-lg text-blue-600 py-12">Loading weather data...</div>
+                    <div className="flex flex-col items-center justify-center py-12">
+                        <Loader className="animate-spin h-8 w-8 text-blue-600 mb-4" />
+                        <div className="text-lg text-blue-600">Loading weather data...</div>
+                    </div>
                 ) : error ? (
                     <div className="text-center text-red-600 py-12">{error}</div>
                 ) : (

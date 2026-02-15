@@ -49,7 +49,7 @@ function WeatherCards({ weatherData }) {
                         </div>
                     </div>
 
-                    {/* Humidity and Comfort Index */}
+                    {/* humidity and Comfort Index */}
                     <div className="flex items-center justify-between pt-2 border-t border-blue-100/50">
                         <div className="flex items-center space-x-1">
                             <span className="text-xs text-gray-500 font-medium">Humidity:</span>

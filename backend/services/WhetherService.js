@@ -7,6 +7,7 @@ const { computeComfortIndex } = require('../utils/comfortIndex');
 const OPENWEATHER_API_KEY = process.env.OPENWEATHER_API_KEY;
 const OPENWEATHER_BASE_URL = process.env.OPENWEATHER_BASE_URL
 
+//fetch weather data with caching
 async function fetchWeatherData(cityCode) {
   const cacheKey = `weather_${cityCode}`;
   let data = cache.get(cacheKey);
@@ -31,10 +32,7 @@ async function getAllCitiesWeather() {
       results.push({
         name: city.name,
         cityCode: city.CityCode,
-        weather: {
-          temp,
-          humidity,
-          windSpeed,
+        weather: { temp,humidity,windSpeed,
           description: data.weather[0].description,
           icon: data.weather[0].icon
         },
@@ -50,28 +48,26 @@ async function getAllCitiesWeather() {
   return results;
 }
 
-// Debug endpoint to check cache status
+
 function getCacheStatus(cityCode) {
   const cacheKey = `weather_${cityCode}`;
   return cache.has(cacheKey) ? 'Hit' : 'Miss';
 }
 
+//fetch cache results for all cities
 async function getAllCitiesWeatherWithCacheStatus() {
   let results = [];
   for (const city of cities) {
     try {
       const status = getCacheStatus(city.CityCode);
       const data = await fetchWeatherData(city.CityCode);
-      const { temp, humidity } = data.main;
+      const { temp,humidity } = data.main;
       const windSpeed = data.wind.speed;
       const comfortIndex = computeComfortIndex(temp, humidity, windSpeed);
       results.push({
         name: city.name,
         cityCode: city.CityCode,
-        weather: {
-          temp,
-          humidity,
-          windSpeed,
+         weather: { temp,humidity,windSpeed,
           description: data.weather[0].description,
           icon: data.weather[0].icon
         },
@@ -82,8 +78,6 @@ async function getAllCitiesWeatherWithCacheStatus() {
       results.push({ name: city.name, error: 'Failed to fetch', cacheStatus: 'Miss' });
     }
   }
-  results.sort((a, b) => b.comfortIndex - a.comfortIndex);
-  results = results.map((item, idx) => ({ ...item, rank: idx + 1 }));
   return results;
 }
 

@@ -6,7 +6,7 @@ export function useWeatherData() {
   const [weatherData, setWeatherData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { getAccessTokenSilently } = useAuth0();
+  const { getAccessTokenSilently } = useAuth0();//get access token after user login
 
   useEffect(() => {
     const fetchData = async () => {

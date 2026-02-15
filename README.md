@@ -20,7 +20,6 @@ A full-stack web application that ranks cities by weather comfort using a custom
    ```bash
    cd backend
    npm install
-   # config environment variables
    npm start  # Starts server on port 3000
    ```
 
@@ -150,7 +149,6 @@ Returns cache hit/miss status for each city.
 
 ### Technical Limitations
 - **Weather API Dependency**: Single point of failure if OpenWeather API is down
-- **City Coverage**: Limited to cities in the `cities.json` file
 - **Cache Staleness**: 5-minute delay for weather updates during rapid changes
 - **No Historical Data**: Only shows current weather conditions
 
