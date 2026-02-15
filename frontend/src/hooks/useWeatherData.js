@@ -1,22 +1,27 @@
 import { useState, useEffect } from 'react';
 import { fetchWeather } from '../api/weatherApi';
+import { useAuth0 } from '@auth0/auth0-react';
 
 export function useWeatherData() {
   const [weatherData, setWeatherData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { getAccessTokenSilently } = useAuth0();
 
   useEffect(() => {
-    fetchWeather()
-      .then((res) => {
+    const fetchData = async () => {
+      try {
+        const token = await getAccessTokenSilently();
+        const res = await fetchWeather(token);
         setWeatherData(res.data);
         setLoading(false);
-      })
-      .catch(() => {
+      } catch (err) {
         setError('Failed to fetch weather data');
         setLoading(false);
-      });
-  }, []);
+      }
+    };
+    fetchData();
+  }, [getAccessTokenSilently]);
 
   return { weatherData, loading, error };
 }

@@ -1,15 +1,15 @@
 import api from './client';
 
-/**
- * Fetch weather data for all cities
- */
-export function fetchWeather() {
-  return api.get('/weather');
+//fetch weather data for all cities
+export function fetchWeather(token) {
+  return api.get('/weather', {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
 }
 
-/**
- * Fetch weather cache status for debugging
- */
+//fetch weather cache status for debugging
 export function fetchWeatherCacheStatus() {
   return api.get('/weather/debug/cache');
 }

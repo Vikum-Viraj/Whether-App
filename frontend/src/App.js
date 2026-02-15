@@ -16,7 +16,10 @@ function App() {
     <Auth0Provider
       domain={domain}
       clientId={clientId}
-      authorizationParams={{ redirect_uri: redirectUri}}
+      authorizationParams={{ 
+        redirect_uri: redirectUri,
+        audience: process.env.REACT_APP_AUTH0_AUDIENCE
+      }}
       cacheLocation="localstorage"
     >
       <BrowserRouter>

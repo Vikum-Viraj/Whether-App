@@ -24,6 +24,7 @@ const Dashboard = () => {
             } else if (sortBy === 'temperature') {
                 return sortOrder === 'asc' ? a.weather.temp - b.weather.temp : b.weather.temp - a.weather.temp;
             }
+            return 0;
         })
     }, [weatherData, sortBy, sortOrder])
 
@@ -68,7 +69,7 @@ const Dashboard = () => {
                     </p>
                 </header>
 
-                <div className='flex justify-center items-center gap-4 bg-white p-2 rounded-lg shadow-sm w-fit mx-auto'>
+                <div className='flex justify-center items-center gap-3 bg-white p-1 rounded-lg shadow-sm w-fit mx-auto'>
                     <button onClick={() => setCurrentTab('table')}
                         className={`px-3 py-2 rounded-md font-medium transition text-sm 
                         ${currentTab === 'table' ? 'bg-blue-500 text-white border' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
@@ -114,7 +115,7 @@ const Dashboard = () => {
                     <section className="space-y-6">
                         {currentTab === 'table' ? (
                             <>
-                                {/* desktop view */}
+                                {/*desktop view */}
                                 <div className="hidden md:block">
                                     <WeatherTable weatherData={paginationData.currentItems} />
                                     <div className='mt-2'>
@@ -130,7 +131,7 @@ const Dashboard = () => {
                                     </div>
                                 </div>
 
-                                {/* mobile view */}
+                                {/*mobile view */}
                                 <div className="md:hidden">
                                     <WeatherCards weatherData={paginationData.currentItems} />
                                     {paginationData.totalPages > 1 && (
