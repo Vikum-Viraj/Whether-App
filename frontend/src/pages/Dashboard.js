@@ -71,7 +71,7 @@ const Dashboard = () => {
                 <div className='flex justify-center items-center gap-4 bg-white p-2 rounded-lg shadow-sm w-fit mx-auto'>
                     <button onClick={() => setCurrentTab('table')}
                         className={`px-3 py-2 rounded-md font-medium transition text-sm 
-                        ${currentTab === 'table' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
+                        ${currentTab === 'table' ? 'bg-blue-500 text-white border' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}
                     >Comfort Rankings
                     </button>
                     <button onClick={() => setCurrentTab('graph')}

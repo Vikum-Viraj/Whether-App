@@ -36,7 +36,7 @@ function Home() {
         </div>
 
         {/* Features Section */}
-        <div className="grid md:grid-cols-3 gap-8 mt-24">
+        <div className="grid md:grid-cols-3 gap-8 mt-20">
           <div className="bg-white rounded-2xl p-8 shadow-lg border border-blue-100 hover:shadow-xl hover:scale-105 transition-all duration-200">
             <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl flex items-center justify-center mb-6 shadow-md">
               <span className="text-4xl">🌡️</span>
@@ -60,11 +60,11 @@ function Home() {
 
           <div className="bg-white rounded-2xl p-8 shadow-lg border border-blue-100 hover:shadow-xl hover:scale-105 transition-all duration-200">
             <div className="w-16 h-16 bg-gradient-to-br from-indigo-100 to-indigo-200 rounded-2xl flex items-center justify-center mb-6 shadow-md">
-              <span className="text-4xl">🗺️</span>
+              <span className="text-4xl">📈</span>
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-3">Easy Comparison</h3>
+            <h3 className="text-xl font-bold text-gray-900 mb-3">Temperature Trends</h3>
             <p className="text-gray-600">
-              Compare multiple cities at a glance with beautiful cards and detailed tables
+              Visualize temperature changes over time with interactive graphs and charts
             </p>
           </div>
         </div>

@@ -46,7 +46,6 @@ async function getAllCitiesWeather() {
   }
   // sort by comfortIndex descending
   results.sort((a, b) => b.comfortIndex - a.comfortIndex);
-  // iterate and add rank high to low
   results = results.map((item, idx) => ({ ...item, rank: idx + 1 }));
   return results;
 }
