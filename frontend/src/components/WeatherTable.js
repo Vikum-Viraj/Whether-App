@@ -10,7 +10,8 @@ function WeatherTable({ weatherData }) {
   return (
     <div className="space-y-2">
 
-      <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 text-white rounded-xl shadow-lg px-6 py-3">
+      <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 text-white 
+      rounded-xl shadow-lg px-6 py-3">
         <div className="grid grid-cols-6 gap-4">
           <div className="text-left text-sm font-semibold tracking-wide">Rank</div>
           <div className="text-left text-sm font-semibold tracking-wide">City</div>
@@ -75,7 +76,7 @@ function WeatherTable({ weatherData }) {
               <div className="text-center">
                 <div className="inline-flex flex-col items-center">
                   <span className="text-2xl font-extrabold bg-gradient-to-br from-blue-700 to-indigo-700 bg-clip-text text-transparent">
-                    {city.error ? '--' : city.weather ? kelvinToCelsius(city.weather.temp) : '--'}°
+                    {city.error ? '--' : kelvinToCelsius(city.weather.temp)}°
                   </span>
                   <span className="text-xs text-gray-400 font-medium">Celsius</span>
                 </div>
